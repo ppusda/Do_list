@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">할 일 기록</string>
+    <string name="list_date">등록 날짜 : </string>
+    <string name="list_content">세부 내용 : </string>
+</resources>

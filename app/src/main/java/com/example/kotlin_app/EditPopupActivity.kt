@@ -1,21 +1,11 @@
 package com.example.kotlin_app
 
-import android.content.ContentValues
-import android.database.sqlite.SQLiteDatabase
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit_popup.*
-import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -41,7 +31,9 @@ class EditPopupActivity : AppCompatActivity() {
             if(edit_doit.text.toString().equals("")){
                 Toast.makeText(applicationContext, "할 일 항목을 입력해주세요.", Toast.LENGTH_LONG).show()
             }else{
-                val Do_it = Do_it(edit_doit.text.toString(), getTime, edit_content.text.toString())
+                val Do_it = Do_it()
+                Do_it.title = edit_doit.text.toString()
+                Do_it.date = getTime
 
                 db.addDoit(Do_it)
                 finish()

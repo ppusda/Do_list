@@ -22,7 +22,7 @@
             android:background="#CC232323"
             android:orientation="vertical">
 
-            <ExpandableListView
+            <ListView
                 android:id="@+id/list_doit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

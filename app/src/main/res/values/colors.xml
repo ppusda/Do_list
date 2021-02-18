@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="btn_bg1">#D9121212</color>
+    <color name="btn_bg1">#BDBDBD</color>
     <color name="btn_bg2">#D9121212</color>
     <color name="Status_bar">#D9121212</color>
     <color name="teal_200">#FF03DAC5</color>

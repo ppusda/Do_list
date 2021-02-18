@@ -9,34 +9,20 @@ import android.widget.ExpandableListView
 import android.widget.TextView
 import android.widget.Toast
 
-class Do_list_Adapter(var context: Context, var expandableListView: ExpandableListView ,var header : MutableList<String>, var body : MutableList<MutableList<String>>) : BaseExpandableListAdapter() {
-    override fun getGroupCount(): Int {
-        return header.size
-    }
+class Do_list_Adapter(var context: Context, var expandableListView: ExpandableListView,
+                      var header: ArrayList<String>, var body: ArrayList<ArrayList<String>>) : BaseExpandableListAdapter() {
 
-    override fun getChildrenCount(groupPosition: Int): Int {
-        return body[groupPosition].size
-    }
-
+    // Group
     override fun getGroup(groupPosition: Int): String {
         return header[groupPosition]
     }
 
-    override fun getChild(groupPosition: Int, childPosition: Int): String {
-        return body[groupPosition][childPosition]
+    override fun getGroupCount(): Int {
+        return header.size
     }
-
     override fun getGroupId(groupPosition: Int): Long {
         return groupPosition.toLong()
 
-    }
-
-    override fun getChildId(groupPosition: Int, childPosition: Int): Long {
-        return childPosition.toLong()
-    }
-
-    override fun hasStableIds(): Boolean {
-        return false
     }
 
     override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup?): View? {
@@ -53,9 +39,21 @@ class Do_list_Adapter(var context: Context, var expandableListView: ExpandableLi
             } else{
                 expandableListView.expandGroup(groupPosition)
             }
-            Toast.makeText(context, getGroup(groupPosition), Toast.LENGTH_SHORT).show()
         }
-        return  convertView
+        return convertView
+    }
+
+    // Child
+
+    override fun getChild(groupPosition: Int, childPosition: Int): String {
+        return body[groupPosition][childPosition]
+    }
+    override fun getChildrenCount(groupPosition: Int): Int {
+        return body[groupPosition].size
+    }
+
+    override fun getChildId(groupPosition: Int, childPosition: Int): Long {
+        return childPosition.toLong()
     }
 
     override fun getChildView(groupPosition: Int, childPosition: Int, isLastChild: Boolean, convertView: View?, parent: ViewGroup?): View? {
@@ -67,13 +65,28 @@ class Do_list_Adapter(var context: Context, var expandableListView: ExpandableLi
         val title = convertView?.findViewById<TextView>(R.id.txt_list_Content)
         title?.text = getChild(groupPosition, childPosition)
         title?.setOnClickListener {
-            Toast.makeText(context, getChild(groupPosition, childPosition), Toast.LENGTH_SHORT).show()
+
         }
+
         return convertView
     }
 
     override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {
         return true
+    }
+
+    override fun hasStableIds(): Boolean {
+        return false
+    }
+
+    override fun notifyDataSetChanged() {
+        super.notifyDataSetChanged()
+    }
+
+    fun refreshItems(listDataHeader: ArrayList<String>, listChildData: ArrayList<ArrayList<String>>) {
+        this.header = listDataHeader
+        this.body = listChildData
+        notifyDataSetChanged()
     }
 
 }

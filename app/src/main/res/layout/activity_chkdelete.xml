@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="입력"
+            android:text="삭제"
             android:textSize="25dp"
             android:padding="10dp"
             android:textColor="@color/white"/>
@@ -39,18 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="할 일 : "
-                android:layout_marginLeft="5dp"/>
+                android:text="정말로 삭제하시겠습니까?"
+                android:layout_margin="25dp"
+                android:textSize="25dp"/>
 
-            <EditText
-                android:id="@+id/edit_doit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="입력하십시오."
-                android:textColorHint="#77FFFFFF"/>
         </LinearLayout>
     </LinearLayout>
     <View
@@ -66,11 +58,22 @@
         android:background="#D9121212">
 
         <Button
-            android:id="@+id/btn_edit_confirm"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_chk_confirm"
+            android:layout_width="0dp"
             android:layout_height="55dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:background="#CC232323" />
+        <Button
+            android:id="@+id/btn_chk_cancel"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="취소"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:background="#CC232323" />

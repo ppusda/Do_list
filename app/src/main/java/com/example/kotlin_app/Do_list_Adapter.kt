@@ -44,10 +44,18 @@ class Do_list_Adapter : BaseAdapter() {
         var item: Do_it = Do_it()
         item.title = title
         ListViewItemList.add(item)
+        notifyDataSetChanged()
     }
 
     fun ClearItem() {
         ListViewItemList.clear()
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(title: String) {
+        var item: Do_it = Do_it()
+        item.title = title
+
     }
 
 

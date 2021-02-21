@@ -1,6 +1,8 @@
 package com.example.kotlin_app
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,13 @@ class EditPopupActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_edit_popup)
 
+        val it_edit: Intent = intent
+        val e_title: String? = it_edit.getStringExtra("e_title")
+        val chk_title: String? = e_title
+        if(e_title != null){
+            edit_doit.setText(e_title)
+        }
+
         db = DBHelper(this)
 
         var now = System.currentTimeMillis()
@@ -27,16 +36,29 @@ class EditPopupActivity : AppCompatActivity() {
         var sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd");
         var getTime : String = sdf.format(now)
 
-        btn_confirm.setOnClickListener{
-            if(edit_doit.text.toString().equals("")){
-                Toast.makeText(applicationContext, "할 일 항목을 입력해주세요.", Toast.LENGTH_LONG).show()
-            }else{
-                val Do_it = Do_it()
-                Do_it.title = edit_doit.text.toString()
-                Do_it.date = getTime
+        btn_edit_confirm.setOnClickListener{
+            if(e_title.equals(null)) {
+                if (edit_doit.text.toString().equals("")) {
+                    Toast.makeText(applicationContext, "할 일 항목을 입력해주세요.", Toast.LENGTH_LONG).show()
+                } else {
+                    val Do_it = Do_it()
+                    Do_it.title = edit_doit.text.toString()
+                    Do_it.date = getTime
 
-                db.addDoit(Do_it)
-                finish()
+                    db.addDoit(Do_it)
+                    finish()
+                }
+            } else{
+                if (edit_doit.text.toString().equals("")) {
+                    Toast.makeText(applicationContext, "할 일 항목을 입력해주세요.", Toast.LENGTH_LONG).show()
+                } else {
+                    val Do_it = Do_it()
+                    Do_it.title = edit_doit.text.toString()
+                    Do_it.date = getTime
+
+                    db.updateDoit(Do_it, chk_title!!)
+                    finish()
+                }
             }
         }
     }

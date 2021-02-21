@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="400dp"
     android:layout_height="wrap_content"
     tools:context=".EditPopupActivity"
     android:orientation="vertical">
@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="입력"
+            android:text="완료"
             android:textSize="25dp"
             android:padding="10dp"
             android:textColor="@color/white"/>
@@ -39,18 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="할 일 : "
-                android:layout_marginLeft="5dp"/>
+                android:text="해당 항목을 완료하시겠습니까?"
+                android:layout_margin="25dp"
+                android:textSize="25dp"/>
 
-            <EditText
-                android:id="@+id/edit_doit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="입력하십시오."
-                android:textColorHint="#77FFFFFF"/>
         </LinearLayout>
     </LinearLayout>
     <View
@@ -66,11 +58,22 @@
         android:background="#D9121212">
 
         <Button
-            android:id="@+id/btn_edit_confirm"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_chkf_confirm"
+            android:layout_width="0dp"
             android:layout_height="55dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:background="#CC232323" />
+        <Button
+            android:id="@+id/btn_chkf_cancel"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="취소"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:background="#CC232323" />

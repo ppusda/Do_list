@@ -3,13 +3,15 @@ package com.example.kotlin_app
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.AbsListView
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var database: SQLiteDatabase
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     val adapter: Do_list_Adapter = Do_list_Adapter()
     lateinit var do_it: ArrayList<String>
+
+    var chk : Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,41 +32,51 @@ class MainActivity : AppCompatActivity() {
         list_doit.adapter = adapter
 
 
-        btn_edit.setOnClickListener {
-            btn_edit.visibility = View.GONE;
+        btn_main_edit.setOnClickListener {
+            btn_main_edit.visibility = View.GONE;
             btn_set.visibility = View.GONE;
             btn_add.visibility = View.VISIBLE;
-            btn_del.visibility = View.VISIBLE;
             btn_back.visibility = View.VISIBLE;
+            chk *= -1
+            Log.d("chk", chk.toString())
         }
 
         btn_back.setOnClickListener {
-            btn_edit.visibility = View.VISIBLE;
+            btn_main_edit.visibility = View.VISIBLE;
             btn_set.visibility = View.VISIBLE;
             btn_add.visibility = View.GONE;
-            btn_del.visibility = View.GONE;
             btn_back.visibility = View.GONE;
+            chk *= -1
+            Log.d("chk", chk.toString())
         }
 
         btn_add.setOnClickListener {
             val it_set = Intent(this, EditPopupActivity::class.java)
-            startActivity(it_set);
-        }
-
-        btn_del.setOnClickListener {
+            startActivity(it_set)
         }
 
         btn_set.setOnClickListener {
             val it_set = Intent(this, SettingActivity::class.java)
-            startActivity(it_set);
+            startActivity(it_set)
         }
+
+        list_doit.setOnItemClickListener { parent, view, position, id ->
+            val e_title = adapter.ListViewItemList[position].title
+            val e_date = adapter.ListViewItemList[position].date
+
+            val it_sel = Intent(this, SelectPopupActivity::class.java)
+            it_sel.putExtra("chk", chk)
+            it_sel.putExtra("e_title", e_title)
+            it_sel.putExtra("e_date", e_date)
+            startActivity(it_sel)
+        }
+
     }
 
     private fun refreshData() : ArrayList<String> {
         val cursor: Cursor = database.rawQuery("SELECT * FROM do_it", null)
         var arrayList: ArrayList<String> = ArrayList()
         while(cursor.moveToNext()){
-            Log.d("select", cursor.getString(cursor.getColumnIndex("title")))
             arrayList.add(cursor.getString(cursor.getColumnIndex("title")))
         }
         adapter.ClearItem()

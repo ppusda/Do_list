@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
     val adapter: Do_list_Adapter = Do_list_Adapter()
     lateinit var do_it: ArrayList<String>
 
+    lateinit var t_arr: ArrayList<String>
+    lateinit var d_arr: ArrayList<String>
+
     var chk : Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         db = DBHelper(this)
         database = db.writableDatabase
-
         list_doit.adapter = adapter
-
 
         btn_main_edit.setOnClickListener {
             btn_main_edit.visibility = View.GONE;
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
             btn_add.visibility = View.VISIBLE;
             btn_back.visibility = View.VISIBLE;
             chk *= -1
-            Log.d("chk", chk.toString())
         }
 
         btn_back.setOnClickListener {
@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             btn_add.visibility = View.GONE;
             btn_back.visibility = View.GONE;
             chk *= -1
-            Log.d("chk", chk.toString())
         }
 
         btn_add.setOnClickListener {
@@ -73,27 +72,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun refreshData() : ArrayList<String> {
+    private fun refreshData() {
         val cursor: Cursor = database.rawQuery("SELECT * FROM do_it", null)
-        var arrayList: ArrayList<String> = ArrayList()
+        var t_arr = ArrayList<String>()
+        var d_arr = ArrayList<String>()
         while(cursor.moveToNext()){
-            arrayList.add(cursor.getString(cursor.getColumnIndex("title")))
+            t_arr.add(cursor.getString(cursor.getColumnIndex("title")))
+            d_arr.add(cursor.getString(cursor.getColumnIndex("date")))
         }
         adapter.ClearItem()
-        addData(arrayList)
-
+        addData(t_arr, d_arr)
 
         var dla : Do_list_Adapter = list_doit.adapter as Do_list_Adapter
         dla.notifyDataSetChanged()
         list_doit.adapter = dla
-
-        return arrayList
     }
 
-    private fun addData(arrayList: ArrayList<String>) {
-        var itr: Iterator<String> = arrayList.iterator()
-        while(itr.hasNext()){
-            adapter.addItem(itr.next())
+    private fun addData(t_arr: ArrayList<String>, d_arr: ArrayList<String>) {
+        var t_itr: Iterator<String> = t_arr.iterator()
+        var d_itr: Iterator<String> = d_arr.iterator()
+        while(t_itr.hasNext()){
+            adapter.addItem(t_itr.next(), d_itr.next())
         }
     }
 

@@ -58,22 +58,22 @@
         android:background="#D9121212">
 
         <Button
-            android:id="@+id/btn_chkf_confirm"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="확인"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:background="#CC232323" />
-        <Button
             android:id="@+id/btn_chkf_cancel"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="취소"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:background="#CC232323" />
+        <Button
+            android:id="@+id/btn_chkf_confirm"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="확인"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:background="#CC232323" />

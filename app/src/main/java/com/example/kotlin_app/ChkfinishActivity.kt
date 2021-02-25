@@ -3,6 +3,7 @@ package com.example.kotlin_app
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_chkfinish.*
@@ -11,8 +12,7 @@ import java.util.*
 
 class ChkfinishActivity : AppCompatActivity() {
     lateinit var database: SQLiteDatabase
-    lateinit var db: DBHelper
-    lateinit var f_db: F_DBHelper
+    lateinit var f_db: DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +20,11 @@ class ChkfinishActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_chkfinish)
 
-        f_db = F_DBHelper(this)
+        f_db = DBHelper(this)
         database = f_db.writableDatabase
 
         var now = System.currentTimeMillis()
-        var mDate : Date = Date(now);
-        var sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd");
+        var sdf : SimpleDateFormat = SimpleDateFormat("yyyy/MM/dd")
         var getTime : String = sdf.format(now)
 
         val it_chk = intent
@@ -41,7 +40,7 @@ class ChkfinishActivity : AppCompatActivity() {
 
             val Do_it = Do_it()
             Do_it.title = e_title
-            db.deleteDoit(Do_it)
+            f_db.deleteDoit(Do_it)
 
             Toast.makeText(this, "수고하셨습니다!", Toast.LENGTH_LONG).show()
             finish()

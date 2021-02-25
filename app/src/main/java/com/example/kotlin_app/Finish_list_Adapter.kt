@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import org.w3c.dom.Text
 
-class Do_list_Adapter : BaseAdapter() {
+class Finish_list_Adapter : BaseAdapter() {
 
     var ListViewItemList = ArrayList<Do_it>()
 
@@ -59,6 +58,7 @@ class Do_list_Adapter : BaseAdapter() {
     fun removeItem(title: String) {
         var item: Do_it = Do_it()
         item.title = title
+
     }
 
 

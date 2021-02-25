@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_popup.*
 
@@ -21,15 +22,21 @@ class SelectPopupActivity(): AppCompatActivity() {
         var chk: Int = it_sel.getIntExtra("chk", 1)
         var e_title: String? = it_sel.getStringExtra("e_title")
         var e_date: String? = it_sel.getStringExtra("e_date")
-        Log.d("chk", chk.toString())
 
         when(chk){
+            0 -> {
+                btn_sel_edit.visibility = View.GONE
+                btn_finish.visibility = View.GONE
+                btn_del.visibility = View.VISIBLE
+            }
             -1 -> {
                 btn_sel_edit.visibility = View.VISIBLE
+                btn_finish.visibility = View.VISIBLE
                 btn_del.visibility = View.VISIBLE
             }
             1 -> {
                 btn_sel_edit.visibility = View.GONE
+                btn_finish.visibility = View.VISIBLE
                 btn_del.visibility = View.GONE
             }
         }
@@ -37,6 +44,13 @@ class SelectPopupActivity(): AppCompatActivity() {
         btn_del.setOnClickListener {
             val it_chk = Intent(this, ChkdeleteActivity::class.java)
             it_chk.putExtra("e_title", e_title)
+            if(chk == -1){
+                it_chk.putExtra("chk", -1)
+            }else if(chk == 0){
+                it_chk.putExtra("chk", 0)
+            }else{
+                Log.d("Error", "error: selectpopup")
+            }
             startActivity(it_chk)
             finish()
         }

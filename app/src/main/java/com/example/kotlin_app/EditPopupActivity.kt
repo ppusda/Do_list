@@ -3,6 +3,7 @@ package com.example.kotlin_app
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,8 +33,7 @@ class EditPopupActivity : AppCompatActivity() {
         db = DBHelper(this)
 
         var now = System.currentTimeMillis()
-        var mDate : Date = Date(now);
-        var sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd");
+        var sdf : SimpleDateFormat = SimpleDateFormat("yyyy/MM/dd");
         var getTime : String = sdf.format(now)
 
         btn_edit_confirm.setOnClickListener{

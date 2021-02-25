@@ -11,8 +11,13 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
 
+        ll_app_info.setOnClickListener {
+            val it_set = Intent(applicationContext, AppInfoActivity::class.java)
+            startActivity(it_set)
+        }
+
         ll_finish_list.setOnClickListener{
-            val it_set = Intent(this, FinishListActivity::class.java)
+            val it_set = Intent(applicationContext, FinishListActivity::class.java)
             startActivity(it_set)
         }
 

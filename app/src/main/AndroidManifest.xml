@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kotlin_App">
-        <activity android:name=".FinishListActivity"></activity>
+        <activity
+            android:name=".AppInfoActivity"
+            android:theme="@style/popupTheme" />
+        <activity android:name=".FinishListActivity" />
         <activity
             android:name=".ChkfinishActivity"
             android:theme="@style/popupTheme" />

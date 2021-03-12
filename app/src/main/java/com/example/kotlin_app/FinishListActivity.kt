@@ -127,7 +127,7 @@ class FinishListActivity : AppCompatActivity() {
         mid_date = getdate
     }
 
-    private fun refreshData(sc_date: String) {
+    private fun refreshData(sc_date: String) { // 새로고침
         val cursor: Cursor = database.rawQuery("SELECT * FROM f_do WHERE f_date = '$sc_date';", null)
         ft_arr = ArrayList<String>()
         ad_arr = ArrayList<String>()

@@ -55,6 +55,7 @@ class FinishListActivity : AppCompatActivity() {
         btn_selDate.setOnClickListener {
             var dialog: DatePickerDialog = DatePickerDialog(this, callbackMethod, chk_date[0].toInt(), chk_date[1].toInt() - 1, chk_date[2].toInt())
             dialog.show()
+            refreshData(mid_date)
         }
 
         btn_beforeDate.setOnClickListener {
@@ -115,8 +116,8 @@ class FinishListActivity : AppCompatActivity() {
                 }
             }
             chk = 0
+            refreshData(mid_date)
         }
-        refreshData(mid_date)
     }
 
     fun gs_date(now: Any){

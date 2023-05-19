@@ -7,11 +7,11 @@
 ## 📱 앱 사진
 
 * 메인 이미지
-  * 할 일을 추가, 삭제, 수정하고 완료 할 수 있습니다.
-  * <img src = "doit_main.jpg"/>
+  * 할 일을 추가, 삭제, 수정하고 완료 할 수 있습니다.<br>
+     <img src = "doit_main.jpg"/>
 
 * 과거 돌아보기
-  * 완료한 할 일을 돌아볼 수 있습니다.
-  * <img src = "doit_cpl.jpg"/>
+  * 완료한 할 일을 돌아볼 수 있습니다.<br>
+     <img src = "doit_cpl.jpg"/>
 
 
